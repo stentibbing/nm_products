@@ -14,7 +14,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Nordic Milk
- * Plugin URI:        https://www.nordicmilk.eu
+ * Plugin URI:        https://www.taifuun.ee
  * Description:       This plugin adds extra functionality for Nordic Milk theme
  * Version:           1.0.0
  * Author:            Taifuun OÜ

@@ -156,7 +156,9 @@ class Nordic_milk {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
+		$this->loader->add_action( 'init', $plugin_admin, 'register_products_cpt' );
+		$this->loader->add_action( 'init', $plugin_admin, 'register_product_type_taxonomy' );
+		$this->loader->add_action( 'init', $plugin_admin, 'register_packages_taxonomy' );
 	}
 
 	/**
