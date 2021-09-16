@@ -143,12 +143,12 @@ class Nordic_milk_Public {
 					$data_packages = ' data-packages="';
 					for ($i = 0; $i <= count($packages) - 1; $i++) {
 						if ($i != 0) $data_packages .= ' ';
-						$package_classes .= ' package-' . $packages[$i]->slug;
-						$data_packages .= $packages[$i]->slug;
+						$package_classes .= ' package-' . esc_html($packages[$i]->slug);
+						$data_packages .= esc_html($packages[$i]->slug);
 					}
 					$data_packages .= '"';
 				};
-				$output .= $package_classes . '"' . $data_packages . '>' . get_the_title() . "</li>";
+				$output .= $package_classes . '"' . $data_packages . '>' . esc_html(get_the_title()) . "</li>";
 			endwhile;
 			$output .= '</ul>';
 			return $output;
@@ -162,7 +162,18 @@ class Nordic_milk_Public {
 		if (!empty($packages)) {
 			$output = '<ul class="nm-packages-list">';
 			foreach($packages as $package) {
-				$output .= '<li class="nm-package package-' . $package->slug . '" data-package="' . $package->slug . '">' . $package->name . '</li>';
+
+				if (!empty($package->description)) {
+					$package_desc = '<span class="nm-package-desc">(' . esc_html($package->description) . ')</span>'; 
+				} else {
+					$package_desc = "";
+				}
+
+				$output .= '<li class="nm-package package-' . 
+					esc_html($package->slug) . '" data-package="' . 
+					esc_html($package->slug) . '">' . 
+					esc_html($package->name) . 
+					esc_html($package_desc) .'</li>';
 			}
 			$output .= '</ul>';
 			return $output;
