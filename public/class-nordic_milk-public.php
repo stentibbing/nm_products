@@ -172,8 +172,8 @@ class Nordic_milk_Public {
 				$output .= '<li class="nm-package package-' . 
 					esc_html($package->slug) . '" data-package="' . 
 					esc_html($package->slug) . '">' . 
-					esc_html($package->name) . 
-					esc_html($package_desc) .'</li>';
+					esc_html($package->name) . $package_desc .
+					'</li>';
 			}
 			$output .= '</ul>';
 			return $output;
