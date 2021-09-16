@@ -1,32 +1,46 @@
-(function( $ ) {
-	'use strict';
+(function ($) {
+  "use strict";
 
-	/**
-	 * All of the code for your public-facing JavaScript source
-	 * should reside in this file.
-	 *
-	 * Note: It has been assumed you will write jQuery code here, so the
-	 * $ function reference has been prepared for usage within the scope
-	 * of this function.
-	 *
-	 * This enables you to define handlers, for when the DOM is ready:
-	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * When the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and/or other possibilities.
-	 *
-	 * Ideally, it is not considered best practise to attach more than a
-	 * single DOM-ready or window-load handler for a particular page.
-	 * Although scripts in the WordPress core, Plugins and Themes may be
-	 * practising this, we should strive to set a better example in our own work.
-	 */
+  $(function () {
+    $("ul.nm-products-list li.nm-product").mouseenter(function () {
+      let packages = $(this).data("packages").split(" ");
 
-})( jQuery );
+      $("ul.nm-packages-list li").removeClass("highlight");
+
+      packages.forEach(curPackage => {
+        $("ul.nm-packages-list li.package-" + curPackage).addClass("highlight");
+      });
+    });
+
+    $("ul.nm-products-list li.nm-product").mouseleave(function () {
+      $("ul.nm-packages-list li").removeClass("highlight");
+    });
+
+    $("ul.nm-packages-list li.nm-package").mouseenter(function () {
+      let curPackage = $(this).data("package");
+      $("ul.nm-products-list li.nm-product").removeClass("highlight");
+      $("ul.nm-products-list li.nm-product.package-" + curPackage).addClass(
+        "highlight"
+      );
+    });
+
+    $("ul.nm-packages-list li.nm-package").mouseleave(function () {
+      $("ul.nm-products-list li.nm-product").removeClass("highlight");
+    });
+  });
+
+  /*
+   * When the window is loaded:
+   *
+   * $( window ).load(function() {
+   *
+   * });
+   *
+   * ...and/or other possibilities.
+   *
+   * Ideally, it is not considered best practise to attach more than a
+   * single DOM-ready or window-load handler for a particular page.
+   * Although scripts in the WordPress core, Plugins and Themes may be
+   * practising this, we should strive to set a better example in our own work.
+   */
+})(jQuery);
