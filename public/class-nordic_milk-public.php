@@ -162,7 +162,7 @@ class Nordic_milk_Public {
 		if (!empty($packages)) {
 			$output = '<ul class="nm-packages-list">';
 			foreach($packages as $package) {
-				$output .= '<li class="package-' . $package->slug . '" data-package="' . $package->slug . '">' . $package->name . '</li>';
+				$output .= '<li class="nm-package package-' . $package->slug . '" data-package="' . $package->slug . '">' . $package->name . '</li>';
 			}
 			$output .= '</ul>';
 			return $output;
