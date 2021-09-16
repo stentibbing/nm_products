@@ -100,4 +100,76 @@ class Nordic_milk_Public {
 
 	}
 
+	/**
+	 * Register the shortcodes for the public-facing side of the site.
+	 *
+	 * @since    1.0.0
+	 */
+
+
+	public function add_shortcodes() {
+		add_shortcode( 'list_products', array('Nordic_milk_Public', 'render_products_list') );
+		add_shortcode( 'list_packages', array('Nordic_milk_Public', 'render_packages_list') );	
+	}
+
+	/**
+	 * Render list of products by product type
+	 * 
+	 * @since		1.0.0
+	 * @param		string
+	 */
+	public function render_products_list( $atts ) {
+		$attributes = shortcode_atts( array(
+			'product_type' => '',
+		), $atts );	
+		wp_reset_query();
+		$args = array('post_type' => 'products',
+				'tax_query' => array(
+						array(
+								'taxonomy' => 'product_types',
+								'field' => 'slug',
+								'terms' => $attributes['product_type'],
+						),
+				),
+		);
+		$loop = new WP_Query($args);
+		if($loop->have_posts()) {			
+			$output = '<ul class="nm-products-list">';
+			while($loop->have_posts()) : $loop->the_post();
+				$output .= '<li';
+				$package_classes = ' class="nm-product';
+				$packages = get_the_terms(get_the_ID(), 'packages');
+				if ($packages) {
+					$data_packages = ' data-packages="';
+					for ($i = 0; $i <= count($packages) - 1; $i++) {
+						if ($i != 0) $data_packages .= ' ';
+						$package_classes .= ' package_' . $packages[$i]->slug;
+						$data_packages .= $packages[$i]->slug;
+					}
+					$data_packages .= '"';
+				};
+				$output .= $package_classes . '"' . $data_packages . '>' . get_the_title() . "</li>";
+			endwhile;
+			$output .= '</ul>';
+			return $output;
+		} else {
+			return 'No products found';
+		}
+	}
+
+	public function render_packages_list() {
+		$packages = get_terms('packages');
+		if (!empty($packages)) {
+			$output = '<ul class="nm-packages-list">';
+			foreach($packages as $package) {
+				$output .= '<li class="package_' . $package->slug . '" data-package="' . $package->slug . '">' . $package->name . '</li>';
+			}
+			$output .= '</ul>';
+			return $output;
+		} else {
+			return 'No packages found!';
+		} 
+	}
 }
+
+

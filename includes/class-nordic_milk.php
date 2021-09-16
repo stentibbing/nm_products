@@ -78,7 +78,6 @@ class Nordic_milk {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
 	}
 
 	/**
@@ -174,6 +173,7 @@ class Nordic_milk {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_action( 'init', $plugin_public, 'add_shortcodes' );
 
 	}
 
@@ -216,5 +216,4 @@ class Nordic_milk {
 	public function get_version() {
 		return $this->version;
 	}
-
 }
