@@ -131,6 +131,7 @@ class Nordic_milk_Public {
 								'terms' => $attributes['product_type'],
 						),
 				),
+				'nopaging' => true,
 		);
 		$loop = new WP_Query($args);
 		if($loop->have_posts()) {			
