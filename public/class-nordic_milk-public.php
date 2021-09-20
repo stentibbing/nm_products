@@ -108,8 +108,8 @@ class Nordic_milk_Public {
 
 
 	public function add_shortcodes() {
-		add_shortcode( 'list_products', array('Nordic_milk_Public', 'render_products_list') );
-		add_shortcode( 'list_packages', array('Nordic_milk_Public', 'render_packages_list') );	
+		add_shortcode( 'list_products', array($this, 'render_products_list') );
+		add_shortcode( 'list_packages', array($this, 'render_packages_list') );	
 	}
 
 	/**
