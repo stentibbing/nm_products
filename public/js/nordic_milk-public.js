@@ -16,13 +16,15 @@
       $("ul.nm-packages-list li").removeClass("highlight");
     });
 
-    $("ul.nm-packages-list li.nm-package").mouseenter(function () {
-      let curPackage = $(this).data("package");
-      $("ul.nm-products-list li.nm-product").removeClass("highlight");
-      $("ul.nm-products-list li.nm-product.package-" + curPackage).addClass(
-        "highlight"
-      );
-    });
+    $("ul.nm-packages-list li.nm-package span.nm-package-title").mouseenter(
+      function () {
+        let curPackage = $(this).parent().data("package");
+        $("ul.nm-products-list li.nm-product").removeClass("highlight");
+        $("ul.nm-products-list li.nm-product.package-" + curPackage).addClass(
+          "highlight"
+        );
+      }
+    );
 
     $("ul.nm-packages-list li.nm-package").mouseleave(function () {
       $("ul.nm-products-list li.nm-product").removeClass("highlight");
