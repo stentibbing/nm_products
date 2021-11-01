@@ -16,6 +16,7 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       nm_products
  * Domain Path:       /languages
+ * GitHub Plugin URI: stentibbing/nm_products
  */
 
 // If this file is called directly, abort.
@@ -26,7 +27,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Currently plugin version.
  */
-define( 'NM_PRODUCTS_VERSION', '1.0.0' );
+define( 'NM_PRODUCTS_VERSION', '1.0.1' );
 
 /**
  * Plugin Activation code
