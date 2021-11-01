@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Nordic_milk
- * @subpackage Nordic_milk/includes
+ * @package    NM_Products
+ * @subpackage NNM_Products/includes
  * @author     Taifuun OÜ <info@taifuun.ee>
  */
-class Nordic_milk_Loader {
+class NM_Products_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.
