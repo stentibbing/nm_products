@@ -20,6 +20,12 @@ class NM_Products_Admin {
 		$this->version = $version;
 	}
 
+	public function set_gu_access_token() {
+		return array( 
+			'github_access_token' => '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',
+		);
+	}
+
 	/**
 	* Register the products types custom taxonomy for products
  	*/
@@ -183,7 +189,6 @@ class NM_Products_Admin {
 	/**
 	 * Save nutrition facts
 	 */
-
 	function save_nutrition_facts( $post_id ) {
 		if (	!isset( $_POST['nm_nutrition_facts_wpnonce'] ) || 
 					!wp_verify_nonce( $_POST['nm_nutrition_facts_wpnonce'], 'nm_nutrition_facts' ) ||

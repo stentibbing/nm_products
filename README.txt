@@ -26,6 +26,8 @@ Following shortcodes are available:
 If both list of products and packages are rendered, products with certain packages taxonomies and vice versa are 
 highlighted in the public side.
 
+Automatic updating is available via Git Updater.
+
 == Installation ==
 
 1. Upload `nordic_milk.php` to the `/wp-content/plugins/` directory
