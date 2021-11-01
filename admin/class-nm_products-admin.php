@@ -22,7 +22,7 @@ class NM_Products_Admin {
 
 	public function set_gu_access_token() {
 		return array( 
-			'github_access_token' => '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',
+			'github_access_token' => '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',
 		);
 	}
 
