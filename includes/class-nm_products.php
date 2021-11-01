@@ -104,7 +104,6 @@ class NM_Products {
 
 		$plugin_public = new NM_Products_Public( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_action( 'init', $plugin_public, 'add_shortcodes' );
 

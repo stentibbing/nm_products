@@ -24,13 +24,6 @@ class NM_Products_Public {
 	}
 
 	/**
-	 * Include public styles
-	 */
-	public function enqueue_styles() {
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/nm_products-public.css', array(), $this->version, 'all' );
-	}
-
-	/**
 	 * Include public scripts
 	 */
 	public function enqueue_scripts() {
@@ -50,29 +43,34 @@ class NM_Products_Public {
 	 * Render list of products by product type
 	 */
 	public function render_products_list( $atts ) {
-		$attributes = shortcode_atts( array(
-			'product_type' => '',
-		), $atts );	
-		wp_reset_query();
-		$args = array('post_type' => 'products',
-				'tax_query' => array(
-						array(
-								'taxonomy' => 'product_types',
-								'field' => 'slug',
-								'terms' => $attributes['product_type'],
-						),
-				),
-				'nopaging' => true,
+		$args = array(
+			'post_type' => 'product',	
+			'nopaging' => true
 		);
+
+		// Incase product_type arg is passed, look for posts only with that term
+		if (!empty($atts['product_type'])) {
+			$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'product_types',
+				'field' => 'slug',
+				'terms' => $atts['product_type']
+				),
+			);
+		}
+		
+		wp_reset_query();
 		$loop = new WP_Query($args);
+		
 		if($loop->have_posts()) {			
 			$output = '<ul class="nm-products-list">';
 			while($loop->have_posts()) : $loop->the_post();
 				$output .= '<li';
 				$package_classes = ' class="nm-product';
 				$packages = get_the_terms(get_the_ID(), 'packages');
+				$data_packages = '';
 				if ($packages) {
-					$data_packages = ' data-packages="';
+					$data_packages .= ' data-packages="';
 					for ($i = 0; $i <= count($packages) - 1; $i++) {
 						if ($i != 0) $data_packages .= ' ';
 						$package_classes .= ' package-' . esc_html($packages[$i]->slug);
