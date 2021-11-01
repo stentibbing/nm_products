@@ -40,7 +40,7 @@ function activate_nm_products() {
 /**
  * Plugin deactivation code
  */
-function deactivate_nordic_milk() {
+function deactivate_nm_products() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-nm_products-deactivator.php';
 	NM_Products_Deactivator::deactivate();
 }
