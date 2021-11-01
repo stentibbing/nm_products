@@ -16,8 +16,8 @@ type supports title, thumbnail, content, excerpt and additional meta info field 
 Following shortcodes are available:
 
     - list_products
-      Renders list of products. Accepts string product_type as an argument which filters products by product
-      type taxonomy.
+      Renders list of products. Accepts product_type argument as a string which filters products by product
+      type taxonomy. 
     - list_packages
       Renders list of packages taxonomies. 
     - show_products
