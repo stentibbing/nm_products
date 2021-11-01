@@ -89,7 +89,6 @@ class NM_Products {
 
 		$plugin_admin = new NM_Products_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_filter( 'gu_set_options', $plugin_admin, 'set_gu_access_token' );
 		$this->loader->add_action( 'init', $plugin_admin, 'register_product_type_taxonomy' );
 		$this->loader->add_action( 'init', $plugin_admin, 'register_packages_taxonomy' );
 		$this->loader->add_action( 'init', $plugin_admin, 'register_product_cpt' );

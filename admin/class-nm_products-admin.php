@@ -20,12 +20,6 @@ class NM_Products_Admin {
 		$this->version = $version;
 	}
 
-	public function set_gu_access_token() {
-		return array( 
-			'github_access_token' => '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',
-		);
-	}
-
 	/**
 	* Register the products types custom taxonomy for products
  	*/
