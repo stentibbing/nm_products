@@ -5,6 +5,7 @@
    * Funciton to highlight packages belonging to product and vice versa
    */
   $(function () {
+    let hihlightProduct;
     $(".nm-product")
       .on("mouseenter", function () {
         let packages = $(this).data("packages").split(" ");
@@ -18,10 +19,27 @@
         $(".nm-package").removeClass("highlight");
       })
       .on("click", function () {
-        $(".nm-product-list-package-list", this).toggleClass(
-          "package-list-opened"
-        );
+        $(this)
+          .children(".nm-product-list-package-list")
+          .toggleClass("package-list-opened");
+
+        $(".nm-product")
+          .not(this)
+          .children(".nm-product-list-package-list")
+          .removeClass("package-list-opened");
+      })
+      .on("touchstart", function () {
+        hihlightProduct = setTimeout(() => {
+          $(this).addClass("touch-highlight");
+        }, 500);
       });
+
+    $(window).on("touchend click", function () {
+      // Clear timeout so touchhighlight would not be added for click event
+      clearTimeout(hihlightProduct);
+      $(".nm-product").removeClass("touch-highlight");
+    });
+
     $(".nm-package")
       .on("mouseenter", function () {
         let curPackage = $(this).data("package");
