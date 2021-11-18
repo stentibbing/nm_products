@@ -27,7 +27,7 @@ if (! defined('WPINC')) {
 /**
  * Currently plugin version.
  */
-define('NM_PRODUCTS_VERSION', '1.2.0');
+define('NM_PRODUCTS_VERSION', '1.2.1');
 
 /**
  * Plugin Activation code
