@@ -140,7 +140,7 @@ class NM_Products_Admin {
 			'description'           => __( 'Products to be shown on the product page', 'nm_products' ),
 			'labels'                => $labels,
 			'supports'              => array( 'title', 'editor', 'excerpt', 'page-attributes', 'thumbnail'),
-			'taxonomies'						=> array( 'packages' ),
+			'taxonomies'						=> array( 'packages', 'product_types' ),
 			'hierarchical'          => false,
 			'public'                => true,
 			'show_ui'               => true,
