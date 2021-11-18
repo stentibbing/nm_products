@@ -16,11 +16,15 @@
       })
       .on("mouseleave", function () {
         $(".nm-package").removeClass("highlight");
+      })
+      .on("click", function () {
+        $(".nm-product-list-package-list", this).toggleClass(
+          "package-list-opened"
+        );
       });
     $(".nm-package")
       .on("mouseenter", function () {
         let curPackage = $(this).data("package");
-        console.log(curPackage);
         $('.nm-product[data-packages*="' + curPackage + '"]').addClass(
           "highlight"
         );
