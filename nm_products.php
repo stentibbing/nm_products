@@ -9,7 +9,7 @@
  * Plugin Name:       Nordic Milk Products
  * Plugin URI:        https://www.taifuun.ee
  * Description:       This plugin adds product post type with product type and package taxonomy
- * Version:           1.2.0
+ * Version:           1.2.1
  * Author:            Taifuun OÜ
  * Author URI:        https://www.taifuun.ee
  * License:           GPL-2.0+

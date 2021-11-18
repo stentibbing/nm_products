@@ -9,7 +9,7 @@ ob_start(); ?>
 <ul class="nm-products-list">
   <?php foreach ($products as $product): ?>
     <li class="nm-product"
-      <?php if ($product['packages']): ?>
+      <?php if (array_key_exists('packages', $product)): ?>
         <?php
           $packages = "";
           foreach ($product['packages'] as $package) {
