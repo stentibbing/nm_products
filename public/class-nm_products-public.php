@@ -72,7 +72,7 @@ class NM_Products_Public
                 $packages = get_the_terms($post->ID, 'packages');
                 if ($packages) {
                     foreach ($packages as $package) {
-                        $product['packages'][] = $package->slug;
+                        $product['packages'][] = $package;
                     }
                 }
                 $products[] = $product;
