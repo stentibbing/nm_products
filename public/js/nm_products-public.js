@@ -22,7 +22,6 @@
         $(this)
           .children(".nm-product-list-package-list")
           .toggleClass("package-list-opened");
-
         $(".nm-product")
           .not(this)
           .children(".nm-product-list-package-list")
@@ -31,7 +30,7 @@
       .on("touchstart", function () {
         hihlightProduct = setTimeout(() => {
           $(this).addClass("touch-highlight");
-        }, 500);
+        }, 300);
       });
 
     $(window).on("touchend click", function () {
