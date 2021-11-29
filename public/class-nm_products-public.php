@@ -91,8 +91,7 @@ class NM_Products_Public
     /**
      * Render list of packages
      */
-    public function render_packages_list()
-    {
+    public function render_packages_list(){
         $packages_terms = get_terms('packages');
         if (!empty($packages_terms)) {
             $packages	= [];
