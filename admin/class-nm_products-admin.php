@@ -200,7 +200,12 @@ class NM_Products_Admin
                     !isset($_POST['nm_multicolor_title_submited'])) {
             return;
         }
-        update_post_meta($post_id, 'nm_multicolor_title', $_POST['nm_multicolor_title_submited']);
+
+        if (!empty($_POST['nm_multicolor_title_submited'])) {
+            update_post_meta($post_id, 'nm_multicolor_title', $_POST['nm_multicolor_title_submited']);
+        } else {
+            delete_post_meta($post_id, 'nm_multicolor_title');
+        }
     }
 
     /**
@@ -237,7 +242,12 @@ class NM_Products_Admin
                     !isset($_POST['nm_quote_submited'])) {
             return;
         }
-        update_post_meta($post_id, 'nm_quote', $_POST['nm_quote_submited']);
+
+        if (!empty($_POST['nm_quote_submited'])) {
+            update_post_meta($post_id, 'nm_quote', $_POST['nm_quote_submited']);
+        } else {
+            delete_post_meta($post_id, 'nm_quote');
+        }
     }
         
     /**
@@ -274,7 +284,12 @@ class NM_Products_Admin
                     !isset($_POST['nm_nutrition_facts_submited'])) {
             return;
         }
-        update_post_meta($post_id, 'nm_nutrition_facts', $_POST['nm_nutrition_facts_submited']);
+
+        if (!empty($_POST['nm_nutrition_facts_submited'])) {
+            update_post_meta($post_id, 'nm_nutrition_facts', $_POST['nm_nutrition_facts_submited']);
+        } else {
+            delete_post_meta($post_id, 'nm_nutrition_facts');
+        }
     }
 
     /**
@@ -293,7 +308,7 @@ class NM_Products_Admin
         wp_nonce_field('nm_accent_color', 'nm_accent_color_wpnonce');
         
         if (get_post_meta($post->ID, 'nm_accent_color', true)) {
-            $accent_color = '#' . get_post_meta($post->ID, 'nm_accent_color', true);
+            $accent_color = get_post_meta($post->ID, 'nm_accent_color', true);
         } else {
             $accent_color = "#000";
         } ?>
@@ -323,6 +338,7 @@ class NM_Products_Admin
                     !isset($_POST['nm_accent_color'])) {
             return;
         }
+
         update_post_meta($post_id, 'nm_accent_color', $_POST['nm_accent_color']);
     }
 }
