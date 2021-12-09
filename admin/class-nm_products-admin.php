@@ -23,6 +23,22 @@ class NM_Products_Admin
     }
 
     /**
+     * Register the stylesheets for the admin area.
+     */
+    public function enqueue_styles()
+    {
+        wp_enqueue_style('wp-color-picker');
+    }
+
+    /**
+     * Register the JavaScript for the admin area.
+     */
+    public function enqueue_scripts()
+    {
+        wp_enqueue_script('wp-color-picker');
+    }
+
+    /**
     * Register the products types custom taxonomy for products
     */
     public function register_product_type_taxonomy()
