@@ -9,7 +9,7 @@ ob_start(); ?>
   <?php foreach ($products as $product): ?>
     <?php if ($product->post_status == 'publish'): ?>
       <article class="nm-single-product">
-        <div class="nm-product-image"><?php echo get_the_post_thumbnail($product); ?></div>
+        <div class="nm-product-image"><?php echo get_the_post_thumbnail($product, 'post-thumbnail'); ?></div>
         <div class="nm-product-info">
           <a href="<?php echo get_permalink($product); ?>" class="nm-product-title">
             <h2><?php echo esc_html($product->post_title); ?></h2>
