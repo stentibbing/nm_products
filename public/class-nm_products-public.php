@@ -109,8 +109,8 @@ class NM_Products_Public
     }
 
     /**
-     * Render products view
-     */
+    * Render products view
+    */
     public function render_products()
     {
         $args = array(
@@ -119,7 +119,28 @@ class NM_Products_Public
             'post_type' => 'product',
             'nopaging' 	=> true,
         );
-        $products = get_posts($args);
+        
+        $posts = get_posts($args);
+        
+        $products = [];
+            
+        foreach ($posts as $product) {
+            $add_product = [];
+            $add_product['ID'] = $product->ID;
+            $add_product['status'] = $product->post_status;
+            $add_product['slug'] = $product->post_name;
+            $add_product['title'] = esc_html($product->post_title);
+            $add_product['permalink'] =  get_permalink($product);
+            $add_product['thumbnail'] = get_the_post_thumbnail($product);
+            
+            $post_meta = get_post_meta($product->ID);
+            if (array_key_exists('nm_accent_color', $post_meta) && !empty($post_meta['nm_accent_color'])) {
+                $add_product['accent_color'] = $accent_color = $post_meta['nm_accent_color'][0];
+            }
+            
+            $products[] = $add_product;
+        }
+                        
         if (!empty($products)) {
             return require plugin_dir_path(__FILE__) . '/partials/nmp-products-grid-view.php';
         } else {
