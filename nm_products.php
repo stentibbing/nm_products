@@ -9,7 +9,7 @@
  * Plugin Name:       Nordic Milk Products
  * Plugin URI:        https://www.taifuun.ee
  * Description:       This plugin adds products with various views
- * Version:           1.3.3
+ * Version:           1.3.4
  * Author:            Taifuun OÜ
  * Author URI:        https://www.taifuun.ee
  * License:           GPL-2.0+
@@ -27,7 +27,7 @@ if (! defined('WPINC')) {
 /**
  * Currently plugin version.
  */
-define('NM_PRODUCTS_VERSION', '1.3.3');
+define('NM_PRODUCTS_VERSION', '1.3.4');
 
 /**
  * Plugin Activation code
