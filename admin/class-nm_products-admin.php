@@ -1,5 +1,10 @@
 <?php
 
+// If this file is called directly, abort.
+if (! defined('WPINC')) {
+    die;
+}
+
 class NM_Products_Admin
 {
 
@@ -27,6 +32,7 @@ class NM_Products_Admin
      */
     public function enqueue_styles()
     {
+        wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/nm_products-admin.css', array(), $this->version, 'all' );
         wp_enqueue_style('wp-color-picker');
     }
 
@@ -35,6 +41,7 @@ class NM_Products_Admin
      */
     public function enqueue_scripts()
     {
+        wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/nm_products-admin.js', array( 'jquery' ), $this->version, false );
         wp_enqueue_script('wp-color-picker');
     }
 
@@ -281,31 +288,35 @@ class NM_Products_Admin
     {
         wp_nonce_field('nm_nutrition_facts', 'nm_nutrition_facts_wpnonce');
         
-        if (get_post_meta($post->ID, 'nm_nutrition_facts', true)) {
-            wp_editor(get_post_meta($post->ID, 'nm_nutrition_facts', true), 'nm_nutrition_facts_submited');
-        } else {
-            wp_editor('', 'nm_nutrition_facts_submited');
-        }
+        $nm_nutrition_facts = get_post_meta($post->ID, 'nm_nutrition_facts', true);         
+
+        require plugin_dir_path(__FILE__) . '/partials/nmp-nutrition-facts-view.php';
     }
 
     /**
      * Save nutrition facts
      */
     public function save_nutrition_facts($post_id)
-    {
+    {        
         if (!isset($_POST['nm_nutrition_facts_wpnonce']) ||
                     !wp_verify_nonce($_POST['nm_nutrition_facts_wpnonce'], 'nm_nutrition_facts') ||
                     defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ||
-                    !current_user_can('edit_post', $post_id) ||
-                    !isset($_POST['nm_nutrition_facts_submited'])) {
+                    !current_user_can('edit_post', $post_id)) {                  
             return;
         }
 
-        if (!empty($_POST['nm_nutrition_facts_submited'])) {
-            update_post_meta($post_id, 'nm_nutrition_facts', $_POST['nm_nutrition_facts_submited']);
-        } else {
+        if (!isset($_POST['nmp-nutrition-facts'])) {
             delete_post_meta($post_id, 'nm_nutrition_facts');
+            return;
         }
+
+        foreach($_POST['nmp-nutrition-facts'] as $key => $nutrition_fact) {
+            if (empty($nutrition_fact['nutrient']) || empty($nutrition_fact['value'])) {
+                unset($_POST['nmp-nutrition-facts'][$key]);
+            }
+        }        
+        
+        update_post_meta($post_id, 'nm_nutrition_facts', $_POST['nmp-nutrition-facts']);        
     }
 
     /**
