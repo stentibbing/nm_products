@@ -289,7 +289,7 @@ class NM_Products_Admin
         wp_nonce_field('nm_nutrition_facts', 'nm_nutrition_facts_wpnonce');
         
         $nm_nutrition_facts = get_post_meta($post->ID, 'nm_nutrition_facts', true);         
-
+        
         require plugin_dir_path(__FILE__) . '/partials/nmp-nutrition-facts-view.php';
     }
 
@@ -305,12 +305,12 @@ class NM_Products_Admin
             return;
         }
 
-        if (!isset($_POST['nmp-nutrition-facts'])) {
+        if (!isset($_POST['nmp-nutrition-facts']['facts'])) {
             delete_post_meta($post_id, 'nm_nutrition_facts');
             return;
         }
 
-        foreach($_POST['nmp-nutrition-facts'] as $key => $nutrition_fact) {
+        foreach($_POST['nmp-nutrition-facts']['facts'] as $key => $nutrition_fact) {
             if (empty($nutrition_fact['nutrient']) || empty($nutrition_fact['value'])) {
                 unset($_POST['nmp-nutrition-facts'][$key]);
             }
